@@ -1,13 +1,23 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-import {createSwitchNavigator, createAppContainer} from 'react-navigation';
+import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 
 import NearMePediaScreen from './NearMePediaScreen';
+import EnterLocationScreen from "./EnterLocationScreen";
+import ResultLocationScreen from './ResultLocationScreen';
+import CoordinatesInterestScreen from './CoordinatesInterestScreen';
+import AddLocationScreen from './AddLocationScreen';
+import ReadingListScreen from './ReadingListScreen';
 
 const stackRoutes = {
     NearMePedia: NearMePediaScreen,
+    EnterLocation: EnterLocationScreen,
+    ResultLocation: ResultLocationScreen,
+    CoordinatesInterest: CoordinatesInterestScreen,
+    AddLocation: AddLocationScreen,
+    ReadingList: ReadingListScreen,
 };
 const stackOptions = {
     initialRouteName: 'NearMePedia'

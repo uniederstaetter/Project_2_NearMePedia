@@ -1,28 +1,24 @@
 import React from 'react';
 import {StyleSheet, Text, View, ScrollView, Button, TextInput} from 'react-native';
-
-export default class EnterLocation extends React.Component {
+ //API KEY: AIzaSyDc4esddP2WbdHp7zoV-hMS3UdCJXJzpZw
+export default class AddLocation extends React.Component {
     constructor(props){
         super(props)
-        this.state={address: ''}
-    }
 
-    handleAddressChange = address=>{
-        this.setState({address: address})
-    };
+    }
     render() {
 
         return (
             <View>
                 <Text> Enter a Location </Text>
                 <TextInput
+
                     style={styles.input}
-                    value={this.state.address}
-                    onChangeText={this.handleAddressChange}
+                    value={''}
                 />
                 <Button
-                    title={'Display Articles'}
-                    onPress={()=> this.props.onDisplay(this.state.address)}
+                    title={'Add'}
+                    onPress={this.props.onAdd}
                 />
 
             </View>

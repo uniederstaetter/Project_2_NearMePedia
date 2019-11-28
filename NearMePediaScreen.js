@@ -2,16 +2,16 @@ import React from 'react';
 import {StyleSheet, Text, View, ScrollView, Button} from 'react-native';
 import NearMePedia from './NearMePedia';
 
-export default class NearMePediaScreen extends React.Component
-{
+const NearMePediaScreen =props => {
 
-    render()
-    {
-        return (
-            <View>
-                <NearMePedia
-                />
-            </View>
-        )
-    }
-}
+    return (
+        <View>
+            <NearMePedia
+                onStart={()=> props.navigation.navigate('EnterLocation')}
+                onInterest={()=> props.navigation.navigate('CoordinatesInterest')}
+                onReading={()=>props.navigation.navigate('ReadingList')}
+            />
+        </View>
+    );
+};
+export default NearMePediaScreen
