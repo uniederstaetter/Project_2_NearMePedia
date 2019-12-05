@@ -50,7 +50,7 @@ export default class LocationContainer extends PersistContainer {
 
     };
     coordinates = async (resultAddress) => {
-        const response = await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + resultAddress + '&key=AIzaSyDnOaaU_CIxZxa45NcrN0G2Nzl7xVTKFdA ');
+        const response = await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + resultAddress + '&key=xx ');
         const theCoordinates = await response.json();
         const convertedCoordinates = theCoordinates.results.map(apiLocation => {
             return {
