@@ -1,13 +1,22 @@
 import React from 'react';
-import {StyleSheet, Text, View, ScrollView, Button} from 'react-native';
+import {View} from 'react-native';
 import ReadingList from './ReadingList';
+import {Subscribe} from "unstated";
+import ArticleContainer from "./ArticleContainer";
+import LocationContainer from "./LocationContainer";
+
 
 const ReadingListScreen =props => {
 
     return (
         <View>
-            <ReadingList
-            />
+            <Subscribe to={[ArticleContainer]}>
+                {articlecontainer=>(
+                    <ReadingList
+                        readinglist={articlecontainer.state.articleList}
+                    />
+                )}
+            </Subscribe>
         </View>
     );
 };

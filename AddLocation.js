@@ -1,11 +1,23 @@
 import React from 'react';
 import {StyleSheet, Text, View, ScrollView, Button, TextInput} from 'react-native';
- //API KEY: AIzaSyDc4esddP2WbdHp7zoV-hMS3UdCJXJzpZw
-export default class AddLocation extends React.Component {
-    constructor(props){
-        super(props)
+import {Subscribe} from "unstated";
+import LocationContainer from "./LocationContainer";
 
+
+export default class AddLocation extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+
+            address: null
+        }
     }
+
+    handleLocationChange = location => {
+        this.setState({address: location})
+    };
+
+
     render() {
 
         return (
@@ -14,12 +26,23 @@ export default class AddLocation extends React.Component {
                 <TextInput
 
                     style={styles.input}
-                    value={''}
+                    value={this.state.address}
+                    onChangeText={this.handleLocationChange}
                 />
-                <Button
-                    title={'Add'}
-                    onPress={this.props.onAdd}
-                />
+                <Subscribe to={[LocationContainer]}>
+                    {locationcontainer => (
+                        <Button
+                            title={'Add'}
+                            onPress={() => {
+                                locationcontainer.addCoordinate(this.state.address)
+                                this.props.onAdd
+                            }
+                            }
+                        />
+
+                    )}
+                </Subscribe>
+
 
             </View>
         )

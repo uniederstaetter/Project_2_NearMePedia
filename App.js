@@ -11,6 +11,8 @@ import CoordinatesInterestScreen from './CoordinatesInterestScreen';
 import AddLocationScreen from './AddLocationScreen';
 import ReadingListScreen from './ReadingListScreen';
 
+import { Provider } from 'unstated';
+
 const stackRoutes = {
     NearMePedia: NearMePediaScreen,
     EnterLocation: EnterLocationScreen,
@@ -32,8 +34,10 @@ export default class App extends React.Component {
     render() {
 
         return (
-            <AppContainer
-            />
+            <Provider>
+                <AppContainer
+                />
+            </Provider>
         );
     }
 }

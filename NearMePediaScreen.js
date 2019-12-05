@@ -5,7 +5,7 @@ import NearMePedia from './NearMePedia';
 const NearMePediaScreen =props => {
 
     return (
-        <View>
+        <View style={styles.container}>
             <NearMePedia
                 onStart={()=> props.navigation.navigate('EnterLocation')}
                 onInterest={()=> props.navigation.navigate('CoordinatesInterest')}
@@ -15,3 +15,13 @@ const NearMePediaScreen =props => {
     );
 };
 export default NearMePediaScreen
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        padding: 5,
+        backgroundColor: 'white',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+});

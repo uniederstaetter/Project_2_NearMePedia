@@ -1,34 +1,47 @@
 import React from 'react';
-import {StyleSheet, Text, View, ScrollView, Button} from 'react-native';
+import {Text, View} from 'react-native';
+import ArticleList from "./ArticleList";
+
 
 export default class ResultLocation extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {articles: ''}
+        this.state = {articles: null}
     }
 
     fetchArticles = async () => {
         const articles = await this.props.location;
+        //console.log(articles);
         this.setState({articles: articles})
-        console.log(this.state.articles);
 
     }
 
 
-
     componentDidMount() {
-        console.log('mounted');
         this.fetchArticles();
 
     }
 
-
     render() {
+
         return (
             <View>
                 <Text>Results:</Text>
+                {this.state.articles ?
+                    <View>
 
+                        <ArticleList
+                            list={this.state.articles}
+
+                        />
+
+
+                    </View> :
+                    <View>
+                        <Text>Loading...</Text>
+                    </View>}
             </View>
         )
     }
+
 }

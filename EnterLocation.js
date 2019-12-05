@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, ScrollView, Button, TextInput} from 'react-native';
+import {StyleSheet, Text, View, Button, TextInput} from 'react-native';
 
 export default class EnterLocation extends React.Component {
     constructor(props){
