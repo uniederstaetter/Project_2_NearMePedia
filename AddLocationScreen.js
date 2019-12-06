@@ -14,4 +14,6 @@ const AddLocationScreen =props => {
         </View>
     );
 };
+AddLocationScreen.navigationOptions = {title: "Add a Location", headerStyle: { backgroundColor: '#a61b40' },headerTitleStyle: { color: 'white', fontSize:18 }};
+
 export default AddLocationScreen

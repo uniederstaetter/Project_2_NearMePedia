@@ -12,45 +12,54 @@ export default class LocationContainer extends PersistContainer {
         errorMessage: null,
         lat: null,
         lng: null
-    }
+    };
 
     getCurrentLocation = async () => {
 
         let {status} = await Permissions.askAsync(Permissions.LOCATION);
-
+        console.log(status);
         if (status !== "granted") {
-            Alert.alert('You did not grant the permission to use your location.');
+            Alert.alert('You did not grant the permission to use your location. Some services will be limited.');
             this.setState({errorMessage: 'Permission was denied'});
-        }
-        else{
+            this.setState({lat: null});
+            this.setState({lng: null});
+        } else {
             let location = await Location.getCurrentPositionAsync({});
 
             this.setState({lat: location.coords.latitude});
             this.setState({lng: location.coords.longitude});
+            this.setState({errorMessage: null});
+
         }
-
-
+        console.log(this.state.errorMessage);
+        console.log(this.state.lat);
 
     };
 
 
     addCoordinate = async (location) => {
-        const theCoordinates = await this.coordinates(location);
+        console.log(location);
+        if (location === null) {
+            console.log('ups');
+            Alert.alert('You did not enter any Location. Please try again.!');
+        } else {
+            const theCoordinates = await this.coordinates(location);
 
-        const newCoordinate =
-            {
-                name: location,
-                coords: theCoordinates
-            }
-        ;
-        const newList = [...this.state.coordinateList, newCoordinate];
+            const newCoordinate =
+                {
+                    name: location,
+                    coords: theCoordinates
+                }
+            ;
+            const newList = [...this.state.coordinateList, newCoordinate];
 
-        this.setState({coordinateList: newList});
-        console.log(this.state.coordinateList);
+            this.setState({coordinateList: newList});
+        }
+
 
     };
     coordinates = async (resultAddress) => {
-        const response = await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + resultAddress + '&key=xx ');
+        const response = await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + resultAddress + '&key=AIzaSyDnOaaU_CIxZxa45NcrN0G2Nzl7xVTKFdA ');
         const theCoordinates = await response.json();
         const convertedCoordinates = theCoordinates.results.map(apiLocation => {
             return {
@@ -82,8 +91,6 @@ export default class LocationContainer extends PersistContainer {
 
     };
 
-    //TODO: need to have a function that takes as a parameter the coordinates of the current location
-    //TODO: if statement to check if resultaddress are coordinates or an address?
     nearbyArticles = async (lat, lng) => {
         let url = "https://en.wikipedia.org/w/api.php";
 
@@ -93,7 +100,7 @@ export default class LocationContainer extends PersistContainer {
             list: "geosearch",
             gscoord: "" + lat + "|" + lng + "",
             gsradius: "10000",
-            gslimit: "10",
+            gslimit: "50",
             format: "json"
         };
 

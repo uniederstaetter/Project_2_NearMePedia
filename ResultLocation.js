@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import ArticleList from "./ArticleList";
 
 
@@ -25,8 +25,7 @@ export default class ResultLocation extends React.Component {
     render() {
 
         return (
-            <View>
-                <Text>Results:</Text>
+            <View style={resultStyle.container}>
                 {this.state.articles ?
                     <View>
 
@@ -38,10 +37,20 @@ export default class ResultLocation extends React.Component {
 
                     </View> :
                     <View>
-                        <Text>Loading...</Text>
+                        <Text style={resultStyle.text}>Loading...</Text>
                     </View>}
             </View>
         )
     }
 
 }
+const resultStyle = StyleSheet.create({
+    container: {
+        marginTop: 5,
+    },
+    text:{
+        margin:'auto',
+        fontSize:25,
+        fontWeight: 'bold',
+    }
+});

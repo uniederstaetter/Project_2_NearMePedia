@@ -10,14 +10,17 @@ const ReadingListScreen =props => {
 
     return (
         <View>
-            <Subscribe to={[ArticleContainer]}>
-                {articlecontainer=>(
+            <Subscribe to={[ArticleContainer, LocationContainer]}>
+                {(articlecontainer, locationcontainer)=>(
                     <ReadingList
                         readinglist={articlecontainer.state.articleList}
+                        errormessage={locationcontainer.state.errorMessage}
                     />
                 )}
             </Subscribe>
         </View>
     );
 };
+ReadingListScreen.navigationOptions = {title: "Reading List", headerStyle: { backgroundColor: '#a61b40' },headerTitleStyle: { color: 'white', fontSize:18 }};
+
 export default ReadingListScreen

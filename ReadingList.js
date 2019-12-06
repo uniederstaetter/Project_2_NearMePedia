@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, ScrollView, Button} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
 import {Subscribe} from "unstated";
 import ArticleContainer from "./ArticleContainer";
 import SavedArticle from "./SavedArticle";
@@ -9,8 +9,8 @@ import NoLocationArticle from "./NoLocationArticle";
 export default class ReadingList extends React.Component {
     constructor(props) {
         super(props)
-        this.state={
-            error:null,
+        this.state = {
+            error: this.props.errormessage,
         }
 
     }
@@ -21,58 +21,73 @@ export default class ReadingList extends React.Component {
 
     render() {
         const displayReadingList = this.props.readinglist.map(article => {
-            //console.log(article);
             return (
-                <View>
-                    {!this.state.error?
-                    <View style={readingListStyle.readinglist}>
-
-                        <Subscribe to={[LocationContainer]}>
-                            {locationcontainer => (
-                                <SavedArticle
-                                    article={article}
-                                    distance={locationcontainer.theCurrentDistance(article.lat, article.lng)}
-                                />
-                            )}
-
-                        </Subscribe>
-
-
-                    </View>:
-                        <View style={readingListStyle.readinglist}>
-                            <NoLocationArticle
-                                article={article}
-                            />
-                        </View>
-                    }
-                </View>
+                <Subscribe to={[LocationContainer]}>
+                    {locationcontainer => (
+                        <SavedArticle
+                            article={article}
+                            distance={locationcontainer.theCurrentDistance(article.lat, article.lng)}
+                        />
+                    )}
+                </Subscribe>
 
             )
         });
+        const displayNoLocationList = this.props.readinglist.map(article => {
+                return (
+                    <View>
+                        <NoLocationArticle
+                            article={article}
+                        />
+                    </View>
+                )
+            }
+        );
+
 
         const readingList = displayReadingList.map(this.addKeys);
+        const readingListnoLocation = displayNoLocationList.map(this.addKeys);
+
         return (
-            <View>
-                <Text style={readingListStyle.title}>Your Reading List: </Text>
-                <ScrollView>
-                    {readingList}
-                </ScrollView>
 
-                <Subscribe to={[ArticleContainer]}>
-                    {articlecontainer => (
-                        <Button
-                            title={'Delete All'}
+            <ScrollView style={readingListStyle.container}>
+                <View>
+                    {!this.state.error ?
+
+                        <View>
+                            {readingList}
+                        </View> :
+
+                        <View>
+                            {readingListnoLocation}
+                        </View>}
+
+
+                </View>
+                <View>
+                    <Subscribe to={[ArticleContainer]}>
+                        {articlecontainer => (
+                            <TouchableOpacity
+                            style={readingListStyle.button}
                             onPress={() => articlecontainer.clearAllData()}
-                        />
-                    )}
+                            >
+                            <Text style={readingListStyle.textstyle}>Delete Your List</Text>
+                            </TouchableOpacity>
+                        )}
 
-                </Subscribe>
-            </View>
+                    </Subscribe>
+                </View>
+
+            </ScrollView>
+
         )
     }
 }
 
 const readingListStyle = StyleSheet.create({
+    container:{
+       marginTop: 5,
+    },
     readinglist: {
         marginTop: 2,
         marginBottom: 10,
@@ -85,13 +100,19 @@ const readingListStyle = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
     },
-    title: {
-        fontSize: 25,
-        fontWeight: 'bold',
-        color: 'red',
-        padding: 5,
-        marginBottom: 10,
-        margin: 15,
+    button: {
+        height: 40,
+        width: 220,
+        backgroundColor: '#b3daf2',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 5,
+        marginBottom:10,
+        padding:2,
+        margin: 70,
+    },
+    textstyle: {
+        fontSize: 18,
     },
 
 });
