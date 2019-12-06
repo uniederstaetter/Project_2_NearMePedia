@@ -16,7 +16,7 @@ Furthermore note, if the location-access was denied for testing purposes and aft
 in the readinglist, please restart the location. This is due to the fact, that the setState function is async and might take a few seconds
 to execute it. 
 
-The Application starts with a main Screen, where the user has 3 possibilites: 
+The Application starts with a main Screen, on first use the user is asked for permission of accessing the location of his/her phone after granting/dening the user has the following 3 possibilites: 
 
     -1.) Get Started:
       On click of this button, the user is directed to a input screen. 
