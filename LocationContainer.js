@@ -38,9 +38,7 @@ export default class LocationContainer extends PersistContainer {
 
 
     addCoordinate = async (location) => {
-        console.log(location);
         if (location === null) {
-            console.log('ups');
             Alert.alert('You did not enter any Location. Please try again.!');
         } else {
             const theCoordinates = await this.coordinates(location);
@@ -59,7 +57,7 @@ export default class LocationContainer extends PersistContainer {
 
     };
     coordinates = async (resultAddress) => {
-        const response = await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + resultAddress + '&key=AIzaSyDnOaaU_CIxZxa45NcrN0G2Nzl7xVTKFdA ');
+        const response = await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + resultAddress + '&key=xxx');
         const theCoordinates = await response.json();
         const convertedCoordinates = theCoordinates.results.map(apiLocation => {
             return {
