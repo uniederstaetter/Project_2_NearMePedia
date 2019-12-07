@@ -68,7 +68,7 @@ export default class LocationContainer extends PersistContainer {
     //geocoding. For that the Google Maps API has been used. Therefore replace "API-KEY"  in key= with the key that was sent to
     //you via mail. It gets back the coordinates that correspond to that location (approximated).
     coordinates = async (resultAddress) => {
-        const response = await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + resultAddress + '&key=AIzaSyDnOaaU_CIxZxa45NcrN0G2Nzl7xVTKFdA');
+        const response = await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + resultAddress + '&key=API-KEY');
         const theCoordinates = await response.json();
         const convertedCoordinates = theCoordinates.results.map(apiLocation => {
             return {
