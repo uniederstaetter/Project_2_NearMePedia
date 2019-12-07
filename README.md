@@ -10,7 +10,7 @@ distance to a location inside the reading list (It will not show any distance in
 to the user`s current location, will not be available too. This means there will be no such service offered. 
 
 Please note, that the application only works with an Google API-key. For that please go to LocationContainer.js in the function 
-coordinates() and replace 'xx' with a valid API-key. (WAS SENT VIA SUBMISSION ON OLE TO PROFESSOR ROBBES)
+coordinates() and replace 'API-KEY with a valid API-key. (WAS SENT VIA SUBMISSION ON OLE TO PROFESSOR ROBBES)
 
 Furthermore note, if the location-access was denied for testing purposes and after re-granting it, the application does not show any distance
 in the readinglist, please restart the location. This is due to the fact, that the setState function is async and might take a few seconds
