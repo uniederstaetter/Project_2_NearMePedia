@@ -1,9 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text, View, Button, Linking, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View,Linking, TouchableOpacity} from 'react-native';
 import ArticleContainer from './ArticleContainer';
 import {Subscribe} from "unstated";
 
-
+//this component represents an Article that is displayed.
+//an article contains a button with title the Wikipedia article and another button which allows the user to save the article.
+//it does not have any state it simply uses the props that have been passed by the parent component.
+//this props are the title of the article. Furthermore it subscribes to the ArticleContainer to save the articles in a persistent list.
 export default class Article extends React.Component {
     constructor(props) {
         super(props);
@@ -41,6 +44,8 @@ export default class Article extends React.Component {
 
 
 }
+
+////////////////////////***************STYLING*********************///////////////////////////////////
 const anArticle = StyleSheet.create({
     article: {
         fontWeight: 'bold',
@@ -69,12 +74,12 @@ const anArticle = StyleSheet.create({
         backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
-        color:'black',
+        color: 'black',
 
     },
     smallbuttontext: {
         fontSize: 18,
-        textDecorationLine:'underline',
+        textDecorationLine: 'underline',
     }
 
 

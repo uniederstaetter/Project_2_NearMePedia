@@ -1,11 +1,14 @@
 import React from 'react';
 import {StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
 import {Subscribe} from "unstated";
-import ArticleContainer from "./ArticleContainer";
 import SavedArticle from "./SavedArticle";
 import LocationContainer from "./LocationContainer";
 import NoLocationArticle from "./NoLocationArticle";
 
+//this component represents the Reading List the user has created by saving articles.
+//it has one state variable which is the errormessage that was passed by the parent component. This state variable is used for
+//conditional rendering. If the errormessage is null, then the normal SavedArticle Component is called together with the distance to the current
+//location of the user, otherwise it the message is not null, the NoLocationArticle Component is called without any distance.
 export default class ReadingList extends React.Component {
     constructor(props) {
         super(props)
@@ -15,11 +18,16 @@ export default class ReadingList extends React.Component {
 
     }
 
+    //function to assign keys to each element of the list
+    //Note as a key we simply use the index in the list.
     addKeys = (val, index) => (
         {...val, key: index}
     );
 
     render() {
+        //it subscribes to the LocationContainer in this place and get not as props from the ReadingListScreen, since
+        //this pros, the callback function passed, is not for the component ReadingList but rather for the SavedArticle Component
+        //to seperate that and to prevent passing props through too many components it was implemented in this way.
         const displayReadingList = this.props.readinglist.map(article => {
             return (
                 <Subscribe to={[LocationContainer]}>
@@ -33,6 +41,7 @@ export default class ReadingList extends React.Component {
 
             )
         });
+        //reading list without any distance.
         const displayNoLocationList = this.props.readinglist.map(article => {
                 return (
                     <View>
@@ -44,7 +53,7 @@ export default class ReadingList extends React.Component {
             }
         );
 
-
+        //assigning of keys.
         const readingList = displayReadingList.map(this.addKeys);
         const readingListnoLocation = displayNoLocationList.map(this.addKeys);
 
@@ -65,17 +74,13 @@ export default class ReadingList extends React.Component {
 
                 </View>
                 <View>
-                    <Subscribe to={[ArticleContainer]}>
-                        {articlecontainer => (
-                            <TouchableOpacity
-                            style={readingListStyle.button}
-                            onPress={() => articlecontainer.clearAllData()}
-                            >
-                            <Text style={readingListStyle.textstyle}>Delete Your List</Text>
-                            </TouchableOpacity>
-                        )}
+                    <TouchableOpacity
+                        style={readingListStyle.button}
+                        onPress={this.props.onDelete}
+                    >
+                        <Text style={readingListStyle.textstyle}>Delete Your List</Text>
+                    </TouchableOpacity>
 
-                    </Subscribe>
                 </View>
 
             </ScrollView>
@@ -83,10 +88,10 @@ export default class ReadingList extends React.Component {
         )
     }
 }
-
+////////////////////////***************STYLING*********************///////////////////////////////////
 const readingListStyle = StyleSheet.create({
-    container:{
-       marginTop: 5,
+    container: {
+        marginTop: 5,
     },
     readinglist: {
         marginTop: 2,
@@ -107,8 +112,8 @@ const readingListStyle = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 5,
-        marginBottom:10,
-        padding:2,
+        marginBottom: 10,
+        padding: 2,
         margin: 70,
     },
     textstyle: {

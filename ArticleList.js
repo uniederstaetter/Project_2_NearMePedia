@@ -1,7 +1,8 @@
 import React from 'react';
-import {StyleSheet, Text, View, Button, ScrollView} from 'react-native';
+import {StyleSheet, View, ScrollView} from 'react-native';
 import Article from "./Article";
 
+//this component represents the list of articles the user finds on displaying the results for the entered location.
 export default class ArticleList extends React.Component {
     constructor(props) {
         super(props);
@@ -12,9 +13,12 @@ export default class ArticleList extends React.Component {
     //Note as a key we simply use the index in the list.
     addKeys = (val, index) => (
         {...val, key: index}
-    )
+    );
 
     render() {
+        //an article list is created by using the props passed from the parent, which are the results retrieved from the API.
+        //each element in the list is again an Article, so for each element the component Article is called, passing it one article.
+        //notice that an article consists of a title, a distance to the entered location and longitude and latitude coordinates.
         const theArticleList = this.props.list.map(art => {
             return (
                 <View style={articleStyle.article}>
@@ -42,6 +46,7 @@ export default class ArticleList extends React.Component {
 
     }
 }
+////////////////////////***************STYLING*********************///////////////////////////////////
 const articleStyle = StyleSheet.create({
     article: {
         fontWeight: 'bold',

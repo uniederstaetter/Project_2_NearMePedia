@@ -1,14 +1,17 @@
 import React from 'react';
 import {Text, View, Linking, StyleSheet, TouchableOpacity} from 'react-native';
 
-export default class NoLocationArticle extends React.Component{
+//this component is called when the user has not granted the access to his current location,
+//then the reading list will only be a list of articles without any distance. Otherwise the component is
+//very similar to the SavedArticle component.
+export default class NoLocationArticle extends React.Component {
     constructor(props) {
         super(props)
 
     }
 
     render() {
-        return(
+        return (
             <View style={noLocationAricleStyle.noLocationArticle}>
                 <TouchableOpacity
                     style={noLocationAricleStyle.smallbutton}
@@ -23,6 +26,8 @@ export default class NoLocationArticle extends React.Component{
 
     }
 }
+
+////////////////////////***************STYLING*********************///////////////////////////////////
 const noLocationAricleStyle = StyleSheet.create({
     noLocationArticle: {
         marginTop: 2,
@@ -38,11 +43,11 @@ const noLocationAricleStyle = StyleSheet.create({
         backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
-        color:'black',
+        color: 'black',
 
     },
     smallbuttontext: {
         fontSize: 18,
-        textDecorationLine:'underline',
+        textDecorationLine: 'underline',
     }
 });

@@ -1,12 +1,17 @@
 import React from 'react';
-import {StyleSheet, Text, View, Button, TextInput, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native';
 
+//EnterLocation component gives the user the possibility to enter a location of his choice which should be used to calculate
+//articles that are near that location. The component consists of one state which is an address, which is the input of the user
+//a input field and a button for letting the application search for results. That means, when the user clicks on the display button,
+//it uses the callback function, that was passed as props and sets the parameter (the address) to the value the user has given.
 export default class EnterLocation extends React.Component {
     constructor(props) {
         super(props)
         this.state = {address: ''}
     }
 
+    //on user input the state variable address is set to the input of the user.
     handleAddressChange = address => {
         this.setState({address: address})
     };
@@ -24,7 +29,7 @@ export default class EnterLocation extends React.Component {
                     style={styles.button}
                     onPress={() => {
                         this.props.onDisplay(this.state.address)
-                        this.setState({address:''})
+                        this.setState({address: ''})
                     }}
                 >
                     <Text style={styles.textstyle}>Display Articles</Text>
@@ -36,6 +41,7 @@ export default class EnterLocation extends React.Component {
 
     }
 }
+////////////////////////***************STYLING*********************///////////////////////////////////
 const styles = StyleSheet.create({
     container: {
         marginTop: 50,
@@ -53,8 +59,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 5,
-        marginBottom:10,
-        padding:2,
+        marginBottom: 10,
+        padding: 2,
         margin: 70,
     },
     textstyle: {
