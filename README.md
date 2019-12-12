@@ -9,7 +9,7 @@ device that runs the app, if the user does not grant access to his/her location,
 distance to a location inside the reading list (It will not show any distance in that case) and the functionality of displaying articles near 
 to the user`s current location, will not be available too. This means there will be no such service offered. 
 
-Please note, that the application only works with a Google API-key. For that please go to LocationContainer.js in the function 
+Please note, that the application only works with a Google API-key. For that please go to containers: LocationContainer.js in the function 
 coordinates() and replace 'API-KEY with a valid API-key. (WAS SENT VIA SUBMISSION ON OLE TO PROFESSOR ROBBES)
 
 Furthermore note, if the location-access was denied for testing purposes and after re-granting it, the application does not show any distance
