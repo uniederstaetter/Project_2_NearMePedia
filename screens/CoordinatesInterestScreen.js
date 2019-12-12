@@ -1,8 +1,8 @@
 import React from 'react';
 import {View} from 'react-native';
-import CoordinatesInterest from './CoordinatesInterest';
+import CoordinatesInterest from '../components/CoordinatesInterest';
 import {Subscribe} from "unstated";
-import LocationContainer from "./LocationContainer";
+import LocationContainer from "../container/LocationContainer";
 
 //screen component that calls the CoordinatesInterest component and passes some props to it.
 //This props are mainly for navigation, for example if the user has added a new location and after clicking on the add button
@@ -24,6 +24,7 @@ const CoordinatesInterestScreen = props => {
                         errormessage={locationcontainer.state.errorMessage}
                         lat={locationcontainer.state.lat}
                         lng={locationcontainer.state.lng}
+                        onDeleteLocation={(location)=>locationcontainer.deleteCoordinate(location)}
                     />
                 )}
             </Subscribe>

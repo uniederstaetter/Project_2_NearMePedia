@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View,Linking, TouchableOpacity} from 'react-native';
-import ArticleContainer from './ArticleContainer';
+import ArticleContainer from '../container/ArticleContainer';
 import {Subscribe} from "unstated";
 
 //this component represents an Article that is displayed.

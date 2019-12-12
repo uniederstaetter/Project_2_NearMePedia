@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
-import EnterLocation from "./EnterLocation";
+import EnterLocation from "../components/EnterLocation";
 
 //this screen component is used to call the EnterLocation component and it passes navigation props to it.
 //when the user clicks the display button, this callback function is used to navigate to the ResultLocation component and passes

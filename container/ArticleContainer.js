@@ -18,13 +18,16 @@ export default class ArticleContainer extends PersistContainer {
         Alert.alert('The Article has been saved');
     };
 
-    //required field for making the container persistent.
-    persist = {
-        key: 'counter',
-        version: 1,
-        storage: AsyncStorage,
-    };
+    //function to delete an article out of the reading list. For that filter function is used against the key.
+    //notice the key of each list is always just the index in the list, therefore it is used in this case too.
+    deleteArticle= key=>{
+        const updatedList=this.state.articleList.filter((theArticle,index) => index !==key)
 
+        this.setState({articleList: updatedList});
+
+        Alert.alert('The Article has been succesfully deleted.');
+
+    };
     //this function deletes the current list of articles. Mainly used for debugging purposes but implemented as a user function too.
     clearAllData() {
         AsyncStorage.getAllKeys()
@@ -32,5 +35,14 @@ export default class ArticleContainer extends PersistContainer {
             .then(() => alert('success'));
         this.setState({articleList: []});
     }
+
+
+    //required field for making the container persistent.
+    persist = {
+        key: 'counter',
+        version: 1,
+        storage: AsyncStorage,
+    };
+
 
 }

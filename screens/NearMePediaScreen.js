@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text, View, ScrollView, Button} from 'react-native';
-import NearMePedia from './NearMePedia';
+import NearMePedia from '../components/NearMePedia';
 import {Subscribe} from "unstated";
-import LocationContainer from "./LocationContainer"
+import LocationContainer from "../container/LocationContainer"
 
 //navigation component that is used to call the NearMePedia component, i.e., the home screen.
 //it passes some navigation props and a callback function which is called when the component did mounting,

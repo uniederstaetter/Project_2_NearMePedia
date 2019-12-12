@@ -2,13 +2,16 @@ import React from 'react';
 import {StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
 import {Subscribe} from "unstated";
 import SavedArticle from "./SavedArticle";
-import LocationContainer from "./LocationContainer";
+import LocationContainer from "../container/LocationContainer";
 import NoLocationArticle from "./NoLocationArticle";
+import ArticleContainer from "../container/ArticleContainer";
 
 //this component represents the Reading List the user has created by saving articles.
 //it has one state variable which is the errormessage that was passed by the parent component. This state variable is used for
 //conditional rendering. If the errormessage is null, then the normal SavedArticle Component is called together with the distance to the current
 //location of the user, otherwise it the message is not null, the NoLocationArticle Component is called without any distance.
+//the callback function onDelete was not passed to the reading list component rather to the component (savedArticle and NoLocationArticle )
+//because props should be passed directly to the component which needs them.
 export default class ReadingList extends React.Component {
     constructor(props) {
         super(props)
@@ -28,13 +31,14 @@ export default class ReadingList extends React.Component {
         //it subscribes to the LocationContainer in this place and get not as props from the ReadingListScreen, since
         //this pros, the callback function passed, is not for the component ReadingList but rather for the SavedArticle Component
         //to seperate that and to prevent passing props through too many components it was implemented in this way.
-        const displayReadingList = this.props.readinglist.map(article => {
+        const displayReadingList = this.props.readinglist.map((article, index) => {
             return (
-                <Subscribe to={[LocationContainer]}>
-                    {locationcontainer => (
+                <Subscribe to={[LocationContainer, ArticleContainer]}>
+                    {(locationcontainer, articlecontainer) => (
                         <SavedArticle
                             article={article}
                             distance={locationcontainer.theCurrentDistance(article.lat, article.lng)}
+                            onDelete={() => articlecontainer.deleteArticle(index)}
                         />
                     )}
                 </Subscribe>
@@ -42,12 +46,18 @@ export default class ReadingList extends React.Component {
             )
         });
         //reading list without any distance.
-        const displayNoLocationList = this.props.readinglist.map(article => {
+        //also subscribes to ArticleContainer to get the delete function
+        const displayNoLocationList = this.props.readinglist.map((article,index) => {
                 return (
                     <View>
-                        <NoLocationArticle
-                            article={article}
-                        />
+                        <Subscribe to={[ ArticleContainer]}>
+                            { articlecontainer => (
+                                <NoLocationArticle
+                                    article={article}
+                                    onDelete={() => articlecontainer.deleteArticle(index)}
+                                />
+                            )}
+                        </Subscribe>
                     </View>
                 )
             }

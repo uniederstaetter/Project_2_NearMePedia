@@ -64,6 +64,17 @@ export default class LocationContainer extends PersistContainer {
         }
     };
 
+    //this function deletes a saved coordinate from the list.
+    //for that it recieves an index from the callback which is used to filter the list.
+    deleteCoordinate = key => {
+        const updatedList = this.state.coordinateList.filter((theCoordinate, index) => index !== key)
+
+        this.setState({coordinateList: updatedList});
+
+        Alert.alert('The Coordinates have been succesfully deleted.');
+
+    };
+
     //this function is used to calculate the coordinates of the user`s entered location, i.e., is uses reverse
     //geocoding. For that the Google Maps API has been used. Therefore replace "API-KEY"  in key= with the key that was sent to
     //you via mail. It gets back the coordinates that correspond to that location (approximated).

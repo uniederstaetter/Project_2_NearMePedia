@@ -21,6 +21,15 @@ export default class NoLocationArticle extends React.Component {
                 >
                     <Text style={noLocationAricleStyle.smallbuttontext}>{this.props.article.title}</Text>
                 </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={noLocationAricleStyle.button}
+                    onPress={() => {
+                        this.props.onDelete()
+                    }}
+                >
+                    <Text>Delete Article from List</Text>
+                </TouchableOpacity>
             </View>
         )
 
@@ -49,5 +58,17 @@ const noLocationAricleStyle = StyleSheet.create({
     smallbuttontext: {
         fontSize: 18,
         textDecorationLine: 'underline',
-    }
+    },
+    button: {
+        height: 25,
+        width: 190,
+        backgroundColor: '#b3daf2',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 5,
+        marginBottom: 10,
+        padding: 2,
+        marginLeft: 70,
+        marginTop:15,
+    },
 });

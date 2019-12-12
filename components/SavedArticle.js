@@ -21,6 +21,16 @@ export default class SavedArticle extends React.Component {
                     <Text style={savedArticleStyle.smallbuttontext}>{this.props.article.title}</Text>
                 </TouchableOpacity>
                 <Text style={savedArticleStyle.text}>Distance to my current location: {this.props.distance} meter</Text>
+
+                <TouchableOpacity
+                    style={savedArticleStyle.button}
+                    onPress={() => {
+                        this.props.onDelete()
+                    }}
+                >
+                    <Text>Delete Article from List</Text>
+                </TouchableOpacity>
+
             </View>
         )
 
@@ -47,10 +57,24 @@ const savedArticleStyle = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         color: 'black',
+        marginBottom:20,
 
     },
     smallbuttontext: {
-        fontSize: 18,
+        fontSize: 19,
         textDecorationLine: 'underline',
-    }
+        fontWeight: 'bold'
+    },
+    button: {
+        height: 25,
+        width: 190,
+        backgroundColor: '#b3daf2',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 5,
+        marginBottom: 10,
+        padding: 2,
+        marginLeft: 70,
+        marginTop:15,
+    },
 });

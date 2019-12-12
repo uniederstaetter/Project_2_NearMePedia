@@ -1,9 +1,9 @@
 import React from 'react';
 import {View} from 'react-native';
-import ReadingList from './ReadingList';
+import ReadingList from '../components/ReadingList';
 import {Subscribe} from "unstated";
-import ArticleContainer from "./ArticleContainer";
-import LocationContainer from "./LocationContainer";
+import ArticleContainer from "../container/ArticleContainer";
+import LocationContainer from "../container/LocationContainer";
 
 //this screen component subscribes to both container, ArticleContainer and LocationContainer to get the list of
 //saved articles (ArticleContainer) and to get the errormessage(LocationContainer). Furthermore it gets a callback function

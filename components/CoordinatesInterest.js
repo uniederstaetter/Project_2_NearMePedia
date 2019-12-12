@@ -27,12 +27,13 @@ export default class CoordinatesInterest extends React.Component {
         //the component gets from the screen component that is calling it the list of coordinates that are stored for the user.
         //for each element in the list, it calls the Coordinates component and passes each element as location prop and
         //additionally it passes a callback that is executed once the user clicks on a coordinates element, i.e., a button. (see Coordinates.js for that logic)
-        const displayCoordinateList = this.props.coordinateList.map(location => {
+        const displayCoordinateList = this.props.coordinateList.map((location,index) => {
             return (
                 <View>
                     <Coordinates
                         location={location}
                         onSelect={this.props.onSelect}
+                        onDelete={()=>this.props.onDeleteLocation(index)}
                     />
 
                 </View>

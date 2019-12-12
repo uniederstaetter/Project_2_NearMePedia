@@ -19,6 +19,13 @@ export default class Coordinates extends React.Component {
                 >
                     <Text style={aCoordinate.smallbuttontext}>{this.props.location.name} </Text>
                 </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={aCoordinate.button}
+                    onPress={this.props.onDelete}
+                >
+                    <Text>Delete Coordinate </Text>
+                </TouchableOpacity>
             </View>
         )
 
@@ -46,8 +53,21 @@ const aCoordinate = StyleSheet.create({
 
     },
     smallbuttontext: {
-        fontSize: 18,
+        fontSize: 20,
         textDecorationLine: 'underline',
-    }
+        fontWeight: 'bold'
+    },
+    button: {
+        height: 25,
+        width: 190,
+        backgroundColor: '#b3daf2',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 5,
+        marginBottom: 10,
+        padding: 2,
+        marginLeft: 70,
+        marginTop:15,
+    },
 
 });

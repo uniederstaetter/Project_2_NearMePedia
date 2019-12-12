@@ -3,12 +3,12 @@ import React from 'react';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 
-import NearMePediaScreen from './NearMePediaScreen';
-import EnterLocationScreen from "./EnterLocationScreen";
-import ResultLocationScreen from './ResultLocationScreen';
-import CoordinatesInterestScreen from './CoordinatesInterestScreen';
-import AddLocationScreen from './AddLocationScreen';
-import ReadingListScreen from './ReadingListScreen';
+import NearMePediaScreen from './screens/NearMePediaScreen';
+import EnterLocationScreen from "./screens/EnterLocationScreen";
+import ResultLocationScreen from './screens/ResultLocationScreen';
+import CoordinatesInterestScreen from './screens/CoordinatesInterestScreen';
+import AddLocationScreen from './screens/AddLocationScreen';
+import ReadingListScreen from './screens/ReadingListScreen';
 
 import {Provider} from 'unstated';
 

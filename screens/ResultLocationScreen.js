@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Alert} from 'react-native';
-import ResultLocation from './ResultLocation';
+import ResultLocation from '../components/ResultLocation';
 import {Subscribe} from "unstated";
-import LocationContainer from "./LocationContainer";
+import LocationContainer from "../container/LocationContainer";
 
 //this screen component subscribes to the Locationcontainer to pass the ResultLocation component the articles
 //for the desired location, which are gathered from the navigation props.(given by all components that navigate to the

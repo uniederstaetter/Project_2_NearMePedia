@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, ScrollView, Button, TextInput, TouchableOpacity} from 'react-native';
 import {Subscribe} from "unstated";
-import LocationContainer from "./LocationContainer";
+import LocationContainer from "../container/LocationContainer";
 
 //AddLocation Component is used to add a location of users interest to the list of saved locations.
 //It subscribes to the LocationContainer, so that on adding the list of saved coordinates is updated.
@@ -31,22 +31,20 @@ export default class AddLocation extends React.Component {
                     value={this.state.address}
                     onChangeText={this.handleLocationChange}
                 />
-                <Subscribe to={[LocationContainer]}>
-                    {locationcontainer => (
 
-                        <TouchableOpacity
-                            style={styles.button}
-                            onPress={() => {
-                                locationcontainer.addCoordinate(this.state.address)
-                                this.props.onAdd()
-                            }
-                            }
-                        >
-                            <Text style={styles.textstyle}>Add Location to your List.</Text>
-                        </TouchableOpacity>
 
-                    )}
-                </Subscribe>
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => {
+                        this.props.onSubmit(this.state.address)
+                        this.props.onAdd()
+                    }
+                    }
+                >
+                    <Text style={styles.textstyle}>Add Location to your List.</Text>
+                </TouchableOpacity>
+
+
 
 
             </View>
